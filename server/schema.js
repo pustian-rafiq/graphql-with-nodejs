@@ -1,4 +1,4 @@
-const {gql } = require('apollo-server')
+const { gql } = require('apollo-server')
 
 const typeDefs = gql`
 type Book {
@@ -35,6 +35,21 @@ type Query {
   animal(slug: String!): Animal,
   categories: [Category!]!,
   category(slug: String!): Category,
+}
+
+type Mutation{
+    addAnimal(
+        image: String!
+        title: String!
+        rating: Float
+        price: String!
+        description: [String]!
+        stock: Int!
+        onSale: Boolean
+        slug: String!
+        category: String
+    ): Animal,
+    removeAnimal(id: ID!): Boolean
 }
 `;
 module.exports = typeDefs
