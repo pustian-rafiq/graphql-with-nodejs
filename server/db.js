@@ -186,4 +186,5 @@ const mainCards = [
       books,
       mainCards,
       animals,
+      categories
   }

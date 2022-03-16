@@ -1,56 +1,35 @@
 const { ApolloServer, gql } = require('apollo-server')
-const { books, mainCards, animals } = require('./db')
+const { mainCards, animals,categories } = require('./db')
+const typeDefs = require('./schema')
+const Query = require('./resolvers/Query')
+const Category = require('./resolvers/Category')
+const Animal = require('./resolvers/Animal')
 // Define Graphql schema
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
-  type MainCard {
-    title: String
-    image: String
-  }
-  type Animal {
-      id:ID!
-    image: String!
-    title: String!
-    rating: Float
-    price: String!
-    description: [String]!
-    stock: Int!
-    onSale: Boolean
-    slug: String!
-    category: String!
-  }
 
-  type Query {
-    books: [Book],
-    mainCards: [MainCard],
-    animals: [Animal!]!,
-    animal(slug: String!): Animal,
-  }
-`;
 
 // Define the data set
 
 
 // Define resolvers
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
-const resolvers = {
-    Query: {
-        books: () => books,
-        mainCards: () => mainCards,
-        animals: () => animals,
-        animal: (parent,args,ctx)=> {
-            let animal = animals.find( data => data.slug === args.slug)
-            return animal
-        }
-    },
-};
+
+ 
 
 // Create an instance of ApolloServer
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer(
+  { 
+    typeDefs,
+     resolvers:{
+       Query,
+       Category,
+       Animal
+     },
+     context:{
+       mainCards,
+       animals,
+       categories
+     }
+     }
+  );
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
