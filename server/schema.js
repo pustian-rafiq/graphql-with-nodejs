@@ -49,7 +49,7 @@ type Mutation{
         slug: String!
         category: String
     ): Animal,
-    removeAnimal(id: ID!): Boolean
+    removeAnimal(id: ID!): Boolean!
 }
 `;
 module.exports = typeDefs

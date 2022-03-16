@@ -10,16 +10,16 @@ const books = [
   ];
 const mainCards = [
     {
-      title: 'The Cow',
-      image: 'Cow',
+      title: 'The Lion',
+      image: 'lion',
+    },
+    {
+      title: 'The Penguin',
+      image: 'penguin',
     },
     {
       title: 'The Cat',
-      image: 'Cat',
-    },
-    {
-      title: 'The Dog',
-      image: 'Dog',
+      image: 'cat',
     },
   ];
 
